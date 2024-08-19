@@ -19,8 +19,9 @@ namespace Exercises
          */
         public static int? LengthOfTheShortestWord(IEnumerable<string> words)
         {
-            //TODO your code goes here
-            throw new NotImplementedException();
+            //return words.Min(word => word?.Length);
+
+            return words.Any() ? words.Min(word => word?.Length) : null;
         }
 
         //Coding Exercise 2
@@ -38,8 +39,12 @@ namespace Exercises
          */
         public static int CountOfLargestNumbers(IEnumerable<int> numbers)
         {
-            //TODO your code goes here
-            throw new NotImplementedException();
+            //return numbers.Any() ? numbers.Count(number => number == numbers.Max()) : 0;
+
+            if(!numbers.Any()) return 0;
+
+            var max = numbers.Max();
+            return numbers.Count(number => number == max);
         }
 
         //Refactoring challenge
@@ -47,8 +52,8 @@ namespace Exercises
         public static int CountOfDogsOfTheOwnerWithMostDogs_Refactored(
             IEnumerable<Person> owners)
         {
-            //TODO your code goes here
-            throw new NotImplementedException();
+            if(!owners.Any(owner => owner.Pets.Any(pet => pet.PetType == PetType.Dog))) return 0;
+            return owners.Max(owner => owner.Pets.Count(pet => pet.PetType == PetType.Dog));
         }
 
         //do not modify this method
